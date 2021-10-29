@@ -1,0 +1,36 @@
+<a routerLink="/">Second exercise</a> <br><br>
+
+<h1>Parent component</h1>
+<br>
+
+<form [formGroup]="userInput">
+    Count one apple in x time (seconds): <input id="appleCountTime" type="number" formControlName="oneAppleCountTime"
+        placeholder=""> <br>
+
+    <div
+        *ngIf="formValuesForValidation.oneAppleCountTime.invalid && (formValuesForValidation.oneAppleCountTime.dirty || formValuesForValidation.oneAppleCountTime.touched)">
+        <div *ngIf="formValuesForValidation.oneAppleCountTime.errors?.required" style="color:red;">
+            One apple count time is required!
+        </div>
+
+        <div *ngIf="+formValuesForValidation.oneAppleCountTime.value < 0" style="color:red;">
+            One apple count time cannot be a negative number
+        </div>
+    </div>
+
+    Given time for the task (seconds): <input id="time" type="number" formControlName="givenTime" placeholder=""> <br>
+
+    <div
+        *ngIf="formValuesForValidation.givenTime.invalid && (formValuesForValidation.givenTime.dirty || formValuesForValidation.givenTime.touched)">
+        <div *ngIf="formValuesForValidation.givenTime.errors?.required" style="color:red;">
+            Given time is required!
+        </div>
+
+        <div *ngIf="+formValuesForValidation.givenTime.value < 0" style="color:red;">
+            Given time cannot be a negative number
+        </div>
+    </div>
+</form>
+
+
+<app-comp2 [result]=taskResult() [givenTime]=this.userInput.value.givenTime></app-comp2>

@@ -1,0 +1,11 @@
+<h1>Child Component</h1><br>
+
+<div *ngIf="this.result < 0; else goodResult">
+    ERROR: Impossible to do the task
+</div>
+
+<ng-template #goodResult>
+    {{result | roundNumber}} apples in {{givenTime}} seconds<br>
+  </ng-template>
+  
+

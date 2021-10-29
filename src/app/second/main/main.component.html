@@ -1,0 +1,5 @@
+<a routerLink="/first">First exercise</a> <br><br>
+
+<div *ngFor="let city of cities">
+    <a [routerLink]="['/city',city]">{{city}}</a>
+</div>

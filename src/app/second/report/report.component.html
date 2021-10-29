@@ -1,0 +1,30 @@
+<a routerLink="/">Atgal</a> <br><br>
+
+All upcoming weeks weather types: {{getWeekWeatherTypes|json}} <br>
+To get a bigger variation of types: Get more weather data (days) by changing the days value in data.resolver <br>
+<br>
+<h1>Pasirinktas miestas {{city|json}}</h1>
+<h2>Šiandienos orai</h2>
+<canvas id="icon0" width="128" height="128"></canvas> <br>
+<span #weatherTypes>{{todayOnly!.weather[0].main}}</span> - {{todayOnly!.weather[0].description}} <br>
+{{todayOnly!.sunrise * 1000 | date}} <br>
+Dienos temperatūra: {{todayOnly?.temp?.day|json}} <span>&#8451;</span> <br>
+Nakties temperatūra: {{todayOnly?.temp?.night|json}} <span>&#8451;</span> <br>
+Saulė kyla {{todayOnly!.sunrise * 1000| unixToTime}}
+Saulė leidžiasi {{todayOnly!.sunset * 1000| unixToTime}}
+
+<hr>
+
+<h2>Ateinančios savaitės orai</h2>
+<div *ngFor="let info of allDays | slice:1;let i = index;">
+    <canvas id="{{ 'icon' + (i+1) }}" width="128" height="128"></canvas> <br>
+    <span #weatherTypes>{{info!.weather[0].main}}</span> - {{info!.weather[0]?.description}} <br>
+    {{info!.sunrise * 1000 | date}} <br>
+    Dienos temperatūra: {{info?.temp?.day|json}} <span>&#8451;</span><br>
+    Nakties temperatūra: {{info?.temp?.night|json}} <span>&#8451;</span> <br>
+    Vėjo greitis {{info?.gust|json}} m/s <br>
+    Saulė kyla {{info!.sunrise * 1000 | unixToTime }}
+    Saulė leidžiasi {{info!.sunset * 1000| unixToTime }}
+    <br><br>
+
+</div>
